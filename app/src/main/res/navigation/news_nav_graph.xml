@@ -11,7 +11,8 @@
 
         <argument
             android:name="article"
-            android:argType="com.rohitraut.newsapp.models.Article" />
+            app:argType="com.rohitraut.newsapp.models.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"

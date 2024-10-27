@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -67,10 +69,19 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.5.0")
-    // Navigation Components
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
+
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
 //    ksp ("com.github.bumptech.glide:compiler:4.12.0")
+
+    // Navigation Components
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
+
+
+
+    implementation (libs.androidx.navigation.navigation.fragment.ktx)  // Latest version
+        implementation (libs.androidx.navigation.navigation.ui.ktx2)  // Latest version
+
+
 }
