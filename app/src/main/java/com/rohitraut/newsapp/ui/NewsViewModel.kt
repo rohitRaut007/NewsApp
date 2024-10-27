@@ -99,7 +99,7 @@ class NewsViewModel (app: Application, val newsRepository: NewsRepository) : And
         headlines.postValue(Resource.Loading())
         try {
             if (internetConnection(this.getApplication())){
-                val response = newsRepository.getHeadlines(countryCode, headlinesPage)
+                val response = newsRepository.getHeadlines("us", headlinesPage)
                 headlines.postValue(handleHeadlinesResponse(response))
             }else{
                 headlines.postValue(Resource.Error("No Internet Connection"))

@@ -19,7 +19,7 @@ import com.rohitraut.newsapp.ui.NewsActivity
 import com.rohitraut.newsapp.ui.NewsViewModel
 
 
-class FavouriteFragment : Fragment() {
+class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
    lateinit var newsViewModel : NewsViewModel
    lateinit var newsAdapter : NewsAdapter
    lateinit var binding: FragmentFavouriteBinding
@@ -61,17 +61,16 @@ class FavouriteFragment : Fragment() {
                     }
                     show()
                 }
-
-
             }
         }
 
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(binding.recyclerFavourites)
-
         }
 
-
+        newsViewModel.getFavouriteNews().observe(viewLifecycleOwner, {
+            articles -> newsAdapter.differ.submitList(articles)
+        })
 
 
     }

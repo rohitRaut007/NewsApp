@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.getSystemService
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textview.MaterialTextView
 import com.rohitraut.newsapp.R
 import com.rohitraut.newsapp.adapters.NewsAdapter
 import com.rohitraut.newsapp.databinding.FragmentArticleBinding
@@ -28,23 +31,14 @@ import com.rohitraut.newsapp.utils.Resource
 import org.w3c.dom.Text
 import java.lang.Error
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HeadlineFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HeadlineFragment : Fragment(R.layout.fragment_headline) {
 
     lateinit var newsViewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
     lateinit var retryButton: Button
-    lateinit var errorText: Text
+    lateinit var errorText: MaterialTextView
     lateinit var itemsHeadlinesError:CardView
+
     lateinit var binding: FragmentHeadlineBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,8 +51,10 @@ class HeadlineFragment : Fragment(R.layout.fragment_headline) {
         val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.item_error, null)
 
+
         retryButton = view.findViewById(R.id.retryButton)
         errorText = view.findViewById(R.id.errorText)
+
 
         newsViewModel = (activity as NewsActivity).newsviewModel
         setupHeadlineRecycler()
@@ -75,7 +71,7 @@ class HeadlineFragment : Fragment(R.layout.fragment_headline) {
             when(response){
                 is Resource.Success<*> -> {
                     hideProgessBar()
-                    hideErrorMessage("")
+                    hideErrorMessage(message = "")
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles)
                         val totalPages = newsResponse.totalResults / Constants.QUERY_PAGE_SIZE + 2
@@ -102,7 +98,7 @@ class HeadlineFragment : Fragment(R.layout.fragment_headline) {
         })
 
         retryButton.setOnClickListener {
-            newsViewModel.getHeadlines("in")
+            newsViewModel.getHeadlines("us")
         }
 
     }
@@ -128,7 +124,7 @@ class HeadlineFragment : Fragment(R.layout.fragment_headline) {
 
     private fun showErrorMessage(message: String){
         itemsHeadlinesError.visibility = View.VISIBLE
-        errorText.textContent = message
+        errorText.text  = message
         isError = true
     }
     
@@ -158,7 +154,7 @@ class HeadlineFragment : Fragment(R.layout.fragment_headline) {
                 isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrooling
 
             if (shouldPaginate) {
-                newsViewModel.getHeadlines("in")
+                newsViewModel.getHeadlines("us")
                 isScrooling = false
             }
         }

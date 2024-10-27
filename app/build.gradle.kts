@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 
 }
 
@@ -38,6 +39,7 @@ android {
 
     buildFeatures{
         viewBinding = true
+
     }
 }
 
@@ -53,10 +55,12 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Architectural Components
-//    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
     // Room
     implementation ("androidx.room:room-runtime:2.6.0")
-//    ksp ("androidx.room:room-compiler:2.6.0")
+    ksp("androidx.room:room-compiler:2.6.0")
+
     // Kotlin Extensions and Coroutines support for Room
     implementation ("androidx.room:room-ktx:2.6.0")
     // Coroutines
@@ -72,16 +76,13 @@ dependencies {
 
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
-//    ksp ("com.github.bumptech.glide:compiler:4.12.0")
+    ksp("com.github.bumptech.glide:compiler:4.12.0")
 
     // Navigation Components
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
 
 
-
-    implementation (libs.androidx.navigation.navigation.fragment.ktx)  // Latest version
-        implementation (libs.androidx.navigation.navigation.ui.ktx2)  // Latest version
 
 
 }
