@@ -2,17 +2,17 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/headlinesFragment"
+    <item android:id="@+id/headlineFragment"
         android:title="Headlines"
         android:icon="@drawable/baseline_headlines_24"
         tools:ignore="HardcodedText" />
 
-    <item android:id="@+id/favouritesFragment"
+    <item android:id="@+id/favouriteFragment"
         android:title="Favourites"
         android:icon="@drawable/baseline_favorite"
         tools:ignore="HardcodedText" />
 
-    <item android:id="@+id/searchFragment"
+    <item android:id="@+id/searchFragment2"
         android:title="Search"
         android:icon="@drawable/baseline_search_24"
         tools:ignore="HardcodedText" />

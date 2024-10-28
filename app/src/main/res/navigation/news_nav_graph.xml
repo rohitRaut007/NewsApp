@@ -29,6 +29,10 @@
         <action
             android:id="@+id/action_headlineFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
+        <!-- Add this action -->
+        <action
+            android:id="@+id/action_headlineFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment2"

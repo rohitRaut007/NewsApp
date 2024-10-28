@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
@@ -35,7 +36,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     lateinit var newsViewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
     lateinit var retryButton: Button
-    lateinit var errorText: Text
+    lateinit var errorText: TextView
     lateinit var itemSearchError : CardView
     lateinit var binding: FragmentSearchBinding
 
@@ -138,7 +139,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun showErrorMessage(message: String){
         itemSearchError.visibility = View.VISIBLE
-        errorText.textContent = message
+        errorText.text = message
         isError = true
     }
 
